@@ -139,76 +139,76 @@
                    <p>私の場合、北大阪校のＩＣＴプログラミング科に在籍しているのでネットワークやプログラミングの授業を受けています。</p>
                     <pre>
                         <code>
-#pragma warning(disable:4996)
+	#pragma warning(disable:4996)
 
-#include<　stdio.h　>
-#include<　stdlib.h　>
-#include<　time.h　>
+	#include<　stdio.h　>
+	#include<　stdlib.h　>
+	#include<　time.h　>
 
-#define LEVEL 3
+	#define LEVEL 3
 
-#define LIMIT 7
+	#define LIMIT 7
 
-make4digit(int a[]);
+		make4digit(int a[]);
 
-int check(int b[]);
+		int check(int b[]);
 
-void judge(int c[], int d[], int *jackpot_sub, int *correct_sub);
+		void judge(int c[], int d[], int *jackpot_sub, int *correct_sub);
 
-void result(int correct_sum, int jackpot_sum);
+		void result(int correct_sum, int jackpot_sum);
 
-int main(void) {
+		int main(void) {
 	
-	int i_i;
-	int chk;
-	int jackpot;
-	int correct;
-	int no[LEVEL];
-	int buff[LEVEL];
+			int i_i;
+			int chk;
+			int jackpot;
+			int correct;
+			int no[LEVEL];
+			int buff[LEVEL];
 	
-	srand((unsigned int)time(NULL));
+			srand((unsigned int)time(NULL));
 
-	printf("ヌメロンを開始します。 %d個の数字を当ててください。\n",LEVEL);
-	printf("1234のように、連続して入力してください。同じ数が含まれることはありません。\n\n");
+			printf("ヌメロンを開始します。 %d個の数字を当ててください。\n",LEVEL);
+			printf("1234のように、連続して入力してください。同じ数が含まれることはありません。\n\n");
 
-	make4digit(no);
+			make4digit(no);
 
-	do{
+			do{
 
-		do {
+				do {
 
-			printf("CPUが数値を生成しました。\nその数値を当ててください\n");
-			for (i_i = 0; i_i < LEVEL; i_i++) {
-				(void)scanf("%d", &buff[i_i]);
-			}
+					printf("CPUが数値を生成しました。\nその数値を当ててください\n");
+					for (i_i = 0; i_i < LEVEL; i_i++)
+					{
+					(void)scanf("%d", &buff[i_i]);
+					}
 
-			chk = check(buff);
+					chk = check(buff);
 
-			if (chk == 1) {
+					if (chk == 1) {
 
-				printf("エラーが発生しました。数字を入力しなおしてください。\n");
-			}
+						printf("エラーが発生しました。数字を入力しなおしてください。\n");}
 
-			} while (chk != 0);
+					} while (chk != 0);
 
 			judge(buff, no, &jackpot, &correct);
 			result(jackpot + correct, jackpot);
 
 
-		} while (jackpot != LEVEL);
+			} while (jackpot != LEVEL);
 
-		printf("---Thankyou for playing!!---");
-	return 0;
-}
+			printf("---Thankyou for playing!!---");
+			return 0;
+			}
 
-make4digit(int a[]) {
+			make4digit(int a[]) {
 
-	int val, i, j;
+			int val, i, j;
 
 	
 
-	for (i = 0; i < LEVEL; i++) {
-		do {
+			for (i = 0; i < LEVEL; i++) {
+			do {
 
 			val = rand() % LIMIT;
 			for (j = 0; j < i; j++) {
@@ -217,47 +217,47 @@ make4digit(int a[]) {
 				}
 			}
 
-		} while (j < i);
+			} while (j < i);
 
-		a[i] = val;
-	}
-}
+			a[i] = val;
+				}
+					}
 
-int check(int b[]) {
+			int check(int b[]) {
 
-	int chk_sum, j, i;
+			int chk_sum, j, i;
 	
-	chk_sum = sizeof(b);
+			chk_sum = sizeof(b);
 
-	if (chk_sum != LEVEL) {
-		return 1;
-	}
-
-
-	for (i = 0; i < LEVEL; i++) {
-		if (b[i]<0 || b[i]>(LIMIT - 1)) {
+			if (chk_sum != LEVEL) {
 			return 1;
-		}
+			}
 
-		for (j = 0; j < i; j++) {
+
+			for (i = 0; i < LEVEL; i++) {
+			if (b[i]<0 || b[i]>(LIMIT - 1)) {
+			return 1;
+			}
+
+			for (j = 0; j < i; j++) {
 			if (b[i] == b[j]) {
 				return 1;
+					}
+				}
 			}
-		}
-	}
 
-	return 0;
+			return 0;
 
-}
+			}
 
-void judge(int c[], int d[], int* jackpot_sub, int* correct_sub) {
+		void judge(int c[], int d[], int* jackpot_sub, int* correct_sub) {
 
-	int i, j;
+		int i, j;
 
-	*jackpot_sub = 0;
-	*correct_sub = 0;
+		*jackpot_sub = 0;
+		*correct_sub = 0;
 
-	for (i = 0; i < LEVEL; i++) {
+		for (i = 0; i < LEVEL; i++) {
 
 		for (j = 0; j < LEVEL; j++) {
 
@@ -267,30 +267,30 @@ void judge(int c[], int d[], int* jackpot_sub, int* correct_sub) {
 				}
 				else {
 					(*correct_sub)++;
+					}
 				}
+			}
 		}
-	}
-}
 
-void result(int correct_sum,int jackpot_sum){ 
+		void result(int correct_sum,int jackpot_sum){ 
 
-	if (jackpot_sum == LEVEL) {
+		if (jackpot_sum == LEVEL) {
 
 		printf("大正解！");
-	}
-
-	else if (correct_sum != 0) {
-		printf("%d個の数字は正解しています。\n",correct_sum);
-
-		if (jackpot_sum == 0) {
-			printf("しかし、位置がすべて正しくありません。\n");
 		}
-		else {
-			printf("%d個は位置も合っています\n", jackpot_sum);
-		}
-	}
 
-}
+		else if (correct_sum != 0) {
+			printf("%d個の数字は正解しています。\n",correct_sum);
+
+			if (jackpot_sum == 0) {
+				printf("しかし、位置がすべて正しくありません。\n");
+			}
+			else {
+				printf("%d個は位置も合っています\n", jackpot_sum);
+				}
+			}
+
+		}
                         
                         </code>
                     
